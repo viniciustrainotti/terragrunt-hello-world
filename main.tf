@@ -6,8 +6,16 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "bucket" {
+module "bucket_1" {
   source = "./modules/s3"
 
-  name = var.bucket_name
+  name = "batata-salsa"
+}
+
+module "bucket_2" {
+  source = "./modules/s3"
+
+  name = "batata-asterix"
+
+  depends_on = [module.bucket_1]
 }
